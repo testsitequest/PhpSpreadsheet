@@ -1,0 +1,152 @@
+// Set font family
+$objPHPExcel->getActiveSheet()->getStyle('A1:D33')->getFont()->setName('Cambria');
+$objPHPExcel->getActiveSheet()->getStyle('A1:D1')->getFont()->setName('Arial Narrow');
+
+// Set font size
+$objPHPExcel->getActiveSheet()->getStyle("A2:D33")->getFont()->setSize(10);
+$objPHPExcel->getActiveSheet()->getStyle("A1")->getFont()->setSize(48);
+$objPHPExcel->getActiveSheet()->getStyle("D1")->getFont()->setSize(14);
+$objPHPExcel->getActiveSheet()->getStyle("B33")->getFont()->setSize(8);
+
+// Set cell color A6A6A6 grey, FFFFFF white, DAEEF3blue 
+$objPHPExcel->getActiveSheet()->getStyle("A1:Z100")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+    ->getStartColor()->setRGB('A6A6A6');
+ $objPHPExcel->getActiveSheet()->getStyle("A1:D33")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+    ->getStartColor()->setRGB('FFFFFF');   
+$objPHPExcel->getActiveSheet()->getStyle("A19:D19")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+    ->getStartColor()->setRGB('DAEEF3');
+    
+// Setting the print area:
+$objPHPExcel->getActiveSheet()
+    ->getPageSetup()
+    ->setPrintArea('A1:D33');
+    
+// Setting Orientation PORTRAIT LANDSCAPE and Paper Size 
+$objPHPExcel->getActiveSheet()
+    ->getPageSetup()
+    ->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_PORTRAIT);
+$objPHPExcel->getActiveSheet()
+    ->getPageSetup()
+    ->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+    
+//Add the Logo image to the cell
+$objDrawing = new PHPExcel_Worksheet_Drawing();
+$objDrawing->setName('QuestLogo');
+$objDrawing->setDescription('QuestLogo');
+$objDrawing->setPath('images/QuestLogo.png');
+$objDrawing->setResizeProportional(true);
+$objDrawing->setWidth(75);
+$objDrawing->setCoordinates('A1');
+$objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+
+//Add the Stamp  image to the cell
+$objDrawing = new PHPExcel_Worksheet_Drawing();
+$objDrawing->setName('QuestStamp');
+$objDrawing->setDescription('QuestStamp');
+$objDrawing->setPath($stampLink2);
+$objDrawing->setResizeProportional(true);
+$objDrawing->setWidth($stampWidth2);
+$objDrawing->setCoordinates('D25');
+$objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+
+// Writing data into cells
+$objPHPExcel->getActiveSheet()->setCellValue('A1', '        Quest');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'S.A.');
+$objPHPExcel->getActiveSheet()->setCellValue('A2', 'To:');
+$objPHPExcel->getActiveSheet()->setCellValue('A3', 'URALKALI TRADING SIA');
+$objPHPExcel->getActiveSheet()->setCellValue('A4', '7 Vesetas Street');
+$objPHPExcel->getActiveSheet()->setCellValue('A5', 'LV-1013, Riga, Latvia');
+$objPHPExcel->getActiveSheet()->setCellValue('A6', 'Reg. No. 40103913482');
+$objPHPExcel->getActiveSheet()->setCellValue('A7', 'VAT № LV40103913482');
+$objPHPExcel->getActiveSheet()->setCellValue('A11', 'Contract No.:');
+$objPHPExcel->getActiveSheet()->setCellValue('A12', 'Product:');
+$objPHPExcel->getActiveSheet()->setCellValue('A13', 'Vessel');
+$objPHPExcel->getActiveSheet()->setCellValue('A14', 'IMO#');
+$objPHPExcel->getActiveSheet()->setCellValue('A15', 'Bill of Lading Date:');
+$objPHPExcel->getActiveSheet()->setCellValue('A16', 'Loading port:');
+$objPHPExcel->getActiveSheet()->setCellValue('A17', 'Discharge port:');
+$objPHPExcel->getActiveSheet()->setCellValue('A19', 'Product/Services');
+$objPHPExcel->getActiveSheet()->setCellValue('A20', 'Freight TOTAL');
+//$objPHPExcel->getActiveSheet()->setCellValue('A21', 'Less 5pct of Total Freight');
+$objPHPExcel->getActiveSheet()->setCellValue('A21', $balanceFreightText);
+$objPHPExcel->getActiveSheet()->setCellValue('A22', 'TOTAL AMOUNT DUE ('.$currency.'): ');
+$objPHPExcel->getActiveSheet()->setCellValue('A24', 'Bank Details:');
+$objPHPExcel->getActiveSheet()->setCellValue('A25', 'Beneficiary: ');
+$objPHPExcel->getActiveSheet()->setCellValue('A26', 'Account ('.$currency.') No.:');
+$objPHPExcel->getActiveSheet()->setCellValue('A27', 'Beneficiary Bank:');
+$objPHPExcel->getActiveSheet()->setCellValue('A28', 'SWIFT No.:');
+$objPHPExcel->getActiveSheet()->setCellValue('A29', 'Covering Bank: ');
+$objPHPExcel->getActiveSheet()->setCellValue('A30', 'SWIFT No.:');
+$objPHPExcel->getActiveSheet()->setCellValue('B6', 'Invoice No.:');
+$objPHPExcel->getActiveSheet()->setCellValue('B7', 'Invoice Date:');
+$objPHPExcel->getActiveSheet()->setCellValue('B8', 'Invoice Due:');
+$objPHPExcel->getActiveSheet()->setCellValue('B11', 'Agreement dd 22.11.2019');
+$objPHPExcel->getActiveSheet()->setCellValue('B12', '=MainData!B2');
+$objPHPExcel->getActiveSheet()->setCellValue('B13', '="Mv "&MainData!B3');
+$objPHPExcel->getActiveSheet()->setCellValue('B14', '=MainData!B4');
+$objPHPExcel->getActiveSheet()->setCellValue('B15', '=MainData!B5');
+$objPHPExcel->getActiveSheet()->setCellValue('B16', '=MainData!B6');
+$objPHPExcel->getActiveSheet()->setCellValue('B17', '=MainData!B7'); 
+$objPHPExcel->getActiveSheet()->setCellValue('B19', 'QUANTITY, MT');
+$objPHPExcel->getActiveSheet()->setCellValue('B20', '=B12');
+$objPHPExcel->getActiveSheet()->setCellValue('B25', 'QUEST SA');
+$objPHPExcel->getActiveSheet()->setCellValue('B26', $account_number);
+$objPHPExcel->getActiveSheet()->setCellValue('B27', 'Sberbank (Switzerland) AG');
+$objPHPExcel->getActiveSheet()->setCellValue('B28', 'SLBZCHZZ');
+$objPHPExcel->getActiveSheet()->setCellValue('B29', $covering_bank);
+$objPHPExcel->getActiveSheet()->setCellValue('B30', $covering_bank_swift);
+$objPHPExcel->getActiveSheet()->setCellValue('B33', 'Rue du Rhone 63, 1204 Geneva, Switzerland / Reg No : CHE-478.187.932');
+    $objPHPExcel->getActiveSheet()->setCellValue('C6', '=MainData!B1&" - '.$vendorName.' - Q"');
+$objPHPExcel->getActiveSheet()->setCellValue('C7', '=TODAY()');
+$objPHPExcel->getActiveSheet()->setCellValue('C8', 'Immediate');
+$objPHPExcel->getActiveSheet()->setCellValue('C12', ' metric tons ferts');
+$objPHPExcel->getActiveSheet()->setCellValue('C19', 'FREIGHT ('.$currency.'/MT)');
+$objPHPExcel->getActiveSheet()->setCellValue('C20', '=MainData!B8');
+$objPHPExcel->getActiveSheet()->setCellValue('D19', 'AMOUNT ('.$currency.')');
+$objPHPExcel->getActiveSheet()->setCellValue('D20', '=B20*C20');
+//$objPHPExcel->getActiveSheet()->setCellValue('D21', '=D20*0.05');
+$objPHPExcel->getActiveSheet()->setCellValue('D21', $balanceFreightNumber);
+$objPHPExcel->getActiveSheet()->setCellValue('D22', $freightTotalCells);
+
+// Set column widths
+$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(16);
+$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(18);
+$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+
+//Styling Cells - Bold text
+$objPHPExcel->getActiveSheet()->getStyle("A3")->applyFromArray(array("font" => array( "bold" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A11:A17")->applyFromArray(array("font" => array( "bold" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A19:D19")->applyFromArray(array("font" => array( "bold" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A22:D22")->applyFromArray(array("font" => array( "bold" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A24:A30")->applyFromArray(array("font" => array( "bold" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("B6:B8")->applyFromArray(array("font" => array( "bold" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("C8")->applyFromArray(array("font" => array( "bold" => true)));
+
+//Styling Cells - Italic text
+$objPHPExcel->getActiveSheet()->getStyle("A2")->applyFromArray(array("font" => array( "italic" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A20")->applyFromArray(array("font" => array( "italic" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A21")->applyFromArray(array("font" => array( "italic" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A22")->applyFromArray(array("font" => array( "italic" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A24")->applyFromArray(array("font" => array( "italic" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("C8")->applyFromArray(array("font" => array( "italic" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("D22")->applyFromArray(array("font" => array( "italic" => true)));
+
+//Styling Cells - Underline text
+$objPHPExcel->getActiveSheet()->getStyle("A2")->applyFromArray(array("font" => array( "underline" => true)));
+$objPHPExcel->getActiveSheet()->getStyle("A24")->applyFromArray(array("font" => array( "underline" => true)));
+
+//Styling Cells - Alignment LEFT CENTER RIGHT
+$objPHPExcel->getActiveSheet()->getStyle("B1")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+$objPHPExcel->getActiveSheet()->getStyle("C1")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+$objPHPExcel->getActiveSheet()->getStyle("A19")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+$objPHPExcel->getActiveSheet()->getStyle("A20:A22")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+$objPHPExcel->getActiveSheet()->getStyle("B33")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+$objPHPExcel->getActiveSheet()->getStyle("B6:B8")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+$objPHPExcel->getActiveSheet()->getStyle("B2:D22")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+$objPHPExcel->getActiveSheet()->getStyle("B11:B17")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+$objPHPExcel->getActiveSheet()->getStyle("B12")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+$objPHPExcel->getActiveSheet()->getStyle("C6")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+$objPHPExcel->getActiveSheet()->getStyle("C7")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+$objPHPExcel->getActiveSheet()->getStyle("C8")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+$objPHPExcel->getActiveSheet()->getStyle("C12")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
